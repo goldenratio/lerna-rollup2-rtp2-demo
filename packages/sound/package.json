@@ -23,5 +23,8 @@
   },
   "bugs": {
     "url": "https://github.com/goldenratio/lerna-demo/issues"
+  },
+  "dependencies": {
+    "@lerna-demo/utils": "^1.0.0"
   }
 }
