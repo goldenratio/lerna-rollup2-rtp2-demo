@@ -1,0 +1,27 @@
+{
+  "name": "@lerna-demo/sound",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "goldenratio <karthikeyanvj@gmail.com>",
+  "homepage": "https://github.com/goldenratio/lerna-demo/tree/master/packages/sound#readme",
+  "license": "MIT",
+  "main": "lib/sound.js",
+  "module": "lib/sound.es.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goldenratio/lerna-demo.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/goldenratio/lerna-demo/issues"
+  }
+}

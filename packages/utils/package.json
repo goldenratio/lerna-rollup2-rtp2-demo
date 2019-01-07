@@ -1,0 +1,27 @@
+{
+  "name": "@lerna-demo/utils",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "goldenratio <karthikeyanvj@gmail.com>",
+  "homepage": "https://github.com/goldenratio/lerna-demo/tree/master/packages/utils#readme",
+  "license": "MIT",
+  "main": "lib/utils.js",
+  "module": "lib/utils.es.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/goldenratio/lerna-demo.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/goldenratio/lerna-demo/issues"
+  }
+}
