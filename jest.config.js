@@ -1,10 +1,25 @@
 module.exports = {
-  "roots": [
-    "<rootDir>",
-    "<rootDir>/packages"
+  'projects': [
+    '<rootDir>',
+    '<rootDir>/packages/*'
   ],
-  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$",
+  "testPathIgnorePatterns": [
+    '/node_modules/',
+    'dist',
+    'output',
+    'docs',
+    'coverage',
+    'tools',
+    'typings'
+  ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  'testRegex': '(/__tests__/.*|\\.(test|spec))\\.tsx?$',
+  'testEnvironment': 'jsdom',
   "moduleFileExtensions": [
+    "ts",
+    "tsx",
     "js",
     "jsx",
     "json",
@@ -12,5 +27,6 @@ module.exports = {
   ],
   "moduleNameMapper": {
     "@lerna-demo/(.*)": "<rootDir>/packages/$1/src"
-  }
+  },
+  'collectCoverage': false
 };
