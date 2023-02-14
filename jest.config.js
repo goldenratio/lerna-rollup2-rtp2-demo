@@ -3,7 +3,7 @@ module.exports = {
     '<rootDir>',
     '<rootDir>/packages/*'
   ],
-  "testPathIgnorePatterns": [
+  'testPathIgnorePatterns': [
     '/node_modules/',
     'dist',
     'output',
@@ -12,21 +12,21 @@ module.exports = {
     'tools',
     'typings'
   ],
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
+  'transform': {
+    '^.+\\.tsx?$': 'ts-jest'
   },
-  'testRegex': '(/__tests__/.*|\\.(test|spec))\\.tsx?$',
+  'testRegex': '(/tests/.*|\\.(test|spec))\\.tsx?$',
   'testEnvironment': 'jsdom',
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "jsx",
-    "json",
-    "node"
+  'moduleFileExtensions': [
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'node'
   ],
-  "moduleNameMapper": {
-    "@lerna-demo/(.*)": "<rootDir>/packages/$1/src"
+  'moduleNameMapper': {
+    '@lerna-demo/(.*)': '<rootDir>/packages/$1/src'
   },
   'collectCoverage': false
 };
