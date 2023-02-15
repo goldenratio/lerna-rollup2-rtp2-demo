@@ -7,12 +7,15 @@
   "license": "MIT",
   "main": "lib/utils.js",
   "module": "lib/utils.es.js",
+  "types": "lib/dts/index.d.ts",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
   },
   "files": [
-    "lib"
+    "lib",
+    "package.json",
+    "README.md"
   ],
   "repository": {
     "type": "git",

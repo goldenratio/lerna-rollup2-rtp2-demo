@@ -7,12 +7,14 @@
     "postinstall": "npm run bootstrap",
     "bootstrap": "lerna bootstrap --hoist --no-ci",
     "lerna": "lerna",
-    "clean:build": "rimraf \"{packages}/*/{lib,dist}\"",
+    "clean:build": "rimraf \"packages/*/lib\" && rimraf \"output\"",
     "preclean": "npm run clean:build",
-    "clean": "lerna clean",
-    "build": "rollup -c",
+    "clean": "lerna clean --yes",
+    "build:types": "tsc -p tsconfig.dts.json",
+    "build": "npm run clean && npm run bootstrap && rollup -c && npm run build:types && npm run organize-output",
     "watch": "rollup -cw",
-    "test": "jest --silent --bail"
+    "test": "jest --silent --bail",
+    "organize-output": "node ./tools/organize-output.js"
   },
   "repository": {
     "type": "git",
@@ -25,19 +27,23 @@
   },
   "homepage": "https://github.com/goldenratio/lerna-demo#readme",
   "devDependencies": {
-    "@types/jest": "29.4.0",
     "@lerna/batch-packages": "3.10.6",
     "@lerna/filter-packages": "3.10.0",
     "@lerna/project": "3.10.0",
-    "rollup-plugin-typescript2": "^0.34.1",
+    "@rollup/plugin-buble": "^1.0.2",
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-replace": "^3.0.0",
+    "@types/jest": "29.4.0",
+    "copy-dir": "^1.3.0",
+    "fs-extra": "^11.1.0",
     "jest": "29.4.1",
     "jest-environment-jsdom": "29.4.1",
-    "ts-jest": "29.0.5",
+    "minimist": "^1.2.5",
     "lerna": "3.10.6",
     "rimraf": "2.6.3",
-    "rollup": "^2.79.1"
+    "rollup": "^2.79.1",
+    "rollup-plugin-typescript2": "^0.34.1",
+    "ts-jest": "29.0.5"
   }
 }
