@@ -18,6 +18,8 @@ organizeFolder(typesSubFolders);
 
 copyToLib(typesSubFolders, fromDir, 'dts');
 
+fs.removeSync(path.resolve(projectRoot, 'output'));
+
 /**
  * @param {string} dirList
  */
