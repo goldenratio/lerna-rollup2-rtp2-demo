@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "./output/types",
+    "skipLibCheck": true
+  },
+  "exclude": [
+    "packages/*/sandbox-*/*",
+    "packages/*/sandbox/*",
+    "packages/*/__tests__/*",
+    "packages/*/lib/*",
+    "output/*",
+    "preview/*"
+  ]
+}

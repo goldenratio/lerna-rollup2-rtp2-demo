@@ -1,8 +1,12 @@
 import path from 'path';
-import transpile from 'rollup-plugin-buble';
-import resolve from 'rollup-plugin-node-resolve';
-import sourcemaps from 'rollup-plugin-sourcemaps';
 import minimist from 'minimist';
+
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
+import typescript from 'rollup-plugin-typescript2';
+import transpile from '@rollup/plugin-buble';
+
 import batchPackages from '@lerna/batch-packages';
 import filterPackages from '@lerna/filter-packages';
 import { getPackages } from '@lerna/project';
@@ -29,16 +33,33 @@ async function getSortedPackages(scope, ignore)
 async function main()
 {
   const plugins = [
-    sourcemaps(),
     resolve({
       browser: true,
       preferBuiltins: false,
     }),
-    transpile(),
+    commonjs(),
+    typescript({
+      tsconfigOverride: {
+        'exclude': [
+          'packages/*/lib/*',
+          'packages/*/sandbox/*',
+          'packages/*/sandbox-*/*',
+          'output/*',
+          'preview/*'
+        ]
+      },
+      // transpileOnly
+      check: false
+    }),
+    transpile({
+      objectAssign: 'Object.assign'
+    }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      preventAssignment: true
+    })
   ];
 
-  const compiled = (new Date()).toUTCString().replace(/GMT/g, 'UTC');
-  const sourcemap = true;
   const results = [];
 
   // Support --scope and --ignore globs if passed in via commandline
@@ -50,7 +71,7 @@ async function main()
     // Check for bundle folder
     const external = Object.keys(pkg.dependencies || []);
     const basePath = path.relative(__dirname, pkg.location);
-    const input = path.join(basePath, 'src/index.js');
+    const input = path.join(basePath, 'src/index.ts');
     const { main, module } = pkg.toJSON();
     const freeze = false;
 
@@ -61,13 +82,13 @@ async function main()
           file: path.join(basePath, main),
           format: 'cjs',
           freeze,
-          sourcemap,
+          sourcemap: true,
         },
         {
           file: path.join(basePath, module),
-          format: 'es',
+          format: 'esm',
           freeze,
-          sourcemap,
+          sourcemap: true,
         },
       ],
       external,
